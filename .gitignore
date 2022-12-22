@@ -1,4 +1,3 @@
-### IntelliJ IDEA ###
 out/
 .idea
-.iml*
+.iml
