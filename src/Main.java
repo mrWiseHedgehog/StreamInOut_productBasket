@@ -6,7 +6,7 @@ public class Main {
 
     public static void main(String[] args) throws IOException {
 
-        File file = new File("basket.txt");
+        File file = new File("basket.bin");
 
         String[] products = new String[]{"Молоко", "Хлеб", "Гречневая крупа", "Мясо"};
         int[] prices = new int[]{50, 14, 80, 340};
@@ -21,7 +21,7 @@ public class Main {
             System.out.println(position + ". " + product + " " + price + " руб/шт");
         }
         if (!file.createNewFile()) {
-            basket = Basket.loadFromTxtFile(file);
+            basket = Basket.loadFromBinFile(file);
             basket.printCart();
         }
 
@@ -45,7 +45,7 @@ public class Main {
                 continue;
             }
             basket.printCart();
-            basket.saveTxt(file);
+            basket.saveBin(file);
         }
     }
 }
