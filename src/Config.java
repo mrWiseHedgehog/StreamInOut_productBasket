@@ -81,10 +81,7 @@ public class Config {
         if (Node.ELEMENT_NODE == nodeChild.getNodeType()) {
             log = Boolean.parseBoolean(nodeChild.getElementsByTagName("enabled").item(0).getTextContent());
             fileNameLog = nodeChild.getElementsByTagName("fileName").item(0).getTextContent();
-
         }
-
-
     }
 
     private void loadConfigFile() {
@@ -97,6 +94,5 @@ public class Config {
         } catch (ParserConfigurationException | IOException | SAXException e) {
             throw new RuntimeException(e);
         }
-
     }
 }
