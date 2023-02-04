@@ -1,7 +1,6 @@
 import java.io.*;
 
 public class Basket {
-
     protected String[] products;
     protected int[] prices;
     protected int totalPrice;
@@ -13,12 +12,14 @@ public class Basket {
         this.amountOfProductsInBasket = new int[products.length];
     }
 
-    public void addToCart(int productNum, int amount) {
+    public void addToBasket(int productNum, int amount) {
         amountOfProductsInBasket[productNum] += amount;
     }
 
-    public void printCart() {
-        System.out.println("Ваша корзина:");
+    public void printBasket() {
+        System.out.println("");
+        System.out.println("***********************");
+        System.out.println("Ваша корзина: ");
         for (int i = 0; i < products.length; i++) {
             if (amountOfProductsInBasket[i] != 0) {
                 totalPrice = totalPrice + (prices[i] * amountOfProductsInBasket[i]);
@@ -27,8 +28,9 @@ public class Basket {
         }
         System.out.println("Итого: " + totalPrice + " рублей");
         totalPrice = 0;
+        System.out.println("***********************");
+        System.out.println(" ");
     }
-
     public void saveTxt(File textFile) throws IOException {
         BufferedWriter buff = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(textFile)));
         for (String product : products) {
@@ -45,7 +47,7 @@ public class Basket {
         buff.close();
     }
 
-    static Basket loadFromTxtFile(File textFile) throws IOException {
+    public static Basket loadFromTxtFile(File textFile, Config config) throws IOException {
         BufferedReader buff = new BufferedReader(new InputStreamReader(new FileInputStream(textFile)));
         String productArr = " ";
         String pricesString = " ";
@@ -55,6 +57,8 @@ public class Basket {
             pricesString = buff.readLine();
             amountString = buff.readLine();
         }
+
+
         String[] products = productArr.split(";");
         String[] pricesArr = pricesString.split(";");
         int[] prices = new int[pricesArr.length];
